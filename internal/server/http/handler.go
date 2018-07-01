@@ -3,8 +3,8 @@ package http
 import (
 	"net/http"
 
+	"github.com/fhbkoller/workshop-go/domain"
 	"github.com/gin-gonic/gin"
-	"github.com/ricardolonga/workshop-go/domain"
 )
 
 type handler struct {
@@ -23,6 +23,7 @@ func NewHandler(userService domain.UserService) http.Handler {
 
 	v1 := router.Group("/v1")
 	v1.POST("/users", handler.postUser)
+	v1.GET("/users/:id", handler.getUser)
 
 	return router
 }
